@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <button onclick="callApi()">클릭</button>
+    <div id="show_result"></div>
+    <script>
+      function callApi() {
+        //Header
+        const config = {
+          method: "get"
+        };
+        //Call Api
+        fetch("http://localhost:19001/verification/api/info/java-version", config)
+          .then(response => response.json())
+          .then(data => {
+                    console.log(data);
+
+                    const div_data = document.createElement("div");
+                    const show_result = document.getElementById("show_result");
+
+                    div_data.textContent = JSON.stringify(data);
+
+                    show_result.appendChild(div_data);
+                })
+          .catch(error => console.log(error));
+      }
+    </script>
+  </body>
+</html>
